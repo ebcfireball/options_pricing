@@ -23,11 +23,12 @@ function App() {
     reinitialize()
   },[price,strike,sig,riskf,expire])
   return (
+    // take out the table and make it look better and more responsive
     <>
-      <div className="mx-auto my-6">Black Scholes Options Pricing</div>
+      <div className="mx-auto my-6 text-2xl font-bold">Black Scholes Options Pricing</div>
       <table className="mx-auto">
         <thead>
-          <tr>
+          <tr className="flex flex-col">
             <th className="border p-2">Stock Price</th>
             <th className="border p-2">Strike Price</th>
             <th className="border p-2">Volatility(sigma)</th>
@@ -36,7 +37,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr className="flex flex-col">
             <td>
               <input
                 onChange={(e) => {
@@ -100,10 +101,10 @@ function App() {
           </tr>
         </tbody>
       </table>
-      <div className="flex justify-around m-20">
-        <div>
+      <div className="flex justify-between m-20">
+        <div className="mr-2">
           <p className="m-6">Call Price: {call.toFixed(2)}</p>
-          <div className="grid grid-cols-5 gap-2">
+          <div className="grid gap-1">
             <p>Delta: {greeks["delta"][0].toFixed(2)}</p>
             <p>Gamma: {greeks["gamma"].toFixed(4)}</p>
             <p>Theta: {greeks["theta"][0].toFixed(3)}</p>
@@ -111,9 +112,9 @@ function App() {
             <p>Rho: {greeks["rho"][0].toFixed(2)}</p>
           </div>
         </div>
-        <div>
+        <div className="ml-2">
           <p className="m-6">Put Price: {put.toFixed(2)}</p>
-          <div className="grid grid-cols-5 gap-2">
+          <div className="grid gap-1">
             <p>Delta: {greeks["delta"][1].toFixed(2)}</p>
             <p>Gamma: {greeks["gamma"].toFixed(4)}</p>
             <p>Theta: {greeks["theta"][1].toFixed(3)}</p>
