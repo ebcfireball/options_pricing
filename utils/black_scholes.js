@@ -1,4 +1,5 @@
 import cdf from "@stdlib/stats-base-dists-normal-cdf";
+
 export const calc_call = (price, strike, sig, riskfree, expire) => {
   const d1 = get_d1(price, strike, sig, riskfree, expire);
   const d2 = get_d2(d1, sig, expire);

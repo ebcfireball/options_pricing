@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect} from "react";
 import "./App.css";
-import { calc_call, calc_put, get_greeks} from "../utils/pricing";
+import { calc_call, calc_put, get_greeks} from "../utils/black_scholes";
 
 function App() {
   const [price,setPrice] = useState(100)
