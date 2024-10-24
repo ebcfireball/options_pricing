@@ -1,7 +1,5 @@
 import { calc_call_bls, calc_put_bls } from "../../utils/black_scholes";
 import { calc_call_bs2002, calc_put_bs2002 } from "../../utils/bjerksund2002";
-//add heatmap legend
-//fix bjerksund by setting it so that it gets the max of black scholes and bjerksund2002
 
 export default function HeatMap({ data }) {
     const { price, strike, expire, dividend, vol, riskfree, type, model } =
@@ -55,8 +53,26 @@ export default function HeatMap({ data }) {
                         )
                     );
                 } else {
-                    console.log(calc_put_bs2002(80,strike,expire/12,riskfree,dividend,.14))
-                    console.log(calc_put_bls(80,strike,.12,riskfree,expire/12,dividend))
+                    console.log(
+                        calc_put_bs2002(
+                            80,
+                            strike,
+                            expire / 12,
+                            riskfree,
+                            dividend,
+                            0.14
+                        )
+                    );
+                    console.log(
+                        calc_put_bls(
+                            80,
+                            strike,
+                            0.12,
+                            riskfree,
+                            expire / 12,
+                            dividend
+                        )
+                    );
                     values.push(
                         calc_put_bs2002(
                             x_lower + x_step * j,
@@ -91,7 +107,7 @@ export default function HeatMap({ data }) {
                     {values.map((val, ind) => (
                         <div
                             style={ind % 11 == 0 ? {} : get_rgb(val)}
-                            className={`text-white place-content-center ${
+                            className={`place-content-center ${
                                 ind % 11 == 0 ? "text-blue-400" : "text-white"
                             }`}
                             key={ind}
@@ -115,6 +131,11 @@ export default function HeatMap({ data }) {
                         Horizontal(Y):Spot Price
                     </span>
                 </p>
+            </div>
+            <div className="flex flex-col my-auto">
+                <p>{mini.toFixed(2)}</p>
+                <div className="bg-gradient-to-t from-[rgb(0,250,0)] to-[rgb(250,0,0)] h-[200px] w-[30px]"></div>
+                <p>{maxi.toFixed(2)}</p>
             </div>
         </>
     );
